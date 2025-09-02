@@ -91,7 +91,7 @@ export default function ItemShort({ data, onDeleted }: IItemShortProps) {
 
                     {/* Original URL */}
                     <div className="pl-11">
-                        <p className="text-sm text-muted-foreground truncate">
+                        <p className="text-sm text-muted-foreground break-words whitespace-normal">
                             <span className="font-medium">Gốc:</span> {data.original_url}
                         </p>
                     </div>

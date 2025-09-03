@@ -31,6 +31,7 @@ import { redirect } from "next/navigation";
 import { toast } from "sonner";
 import { useUserStore } from "@/stores/user-store";
 import { useEffect } from "react";
+import { handleLoginWithGoogle } from "@/app/features/app";
 
 // ✅ Schema validation với zod
 const loginSchema = z.object({
@@ -69,21 +70,6 @@ const LoginPage = () => {
     setUser(data.user);
 
     redirect("/");
-  };
-
-  const handleLoginWithGoogle = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: "/",
-      },
-    });
-
-    if (error) {
-      console.error("Google login error:", error.message);
-    } else {
-      console.log("Redirecting to Google login:", data.url);
-    }
   };
 
   useEffect(() => {

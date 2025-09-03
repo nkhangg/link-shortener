@@ -29,6 +29,9 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import { handleLoginWithGoogle } from "@/app/features/app";
+import { useEffect } from "react";
+import { useUserStore } from "@/stores/user-store";
 
 // ✅ Schema Zod
 const registerSchema = z
@@ -57,6 +60,8 @@ type RegisterFormValues = {
 export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const { user } = useUserStore();
 
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -92,6 +97,12 @@ export default function RegisterPage() {
     }
   };
 
+  useEffect(() => {
+    if (!user) return;
+
+    redirect("/");
+  }, [user]);
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md space-y-8">
@@ -123,6 +134,7 @@ export default function RegisterPage() {
 
           <CardContent className="space-y-4">
             <Button
+              onClick={handleLoginWithGoogle}
               type="button"
               variant="outline"
               className="w-full border-border bg-transparent transition-all duration-200"

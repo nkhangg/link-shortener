@@ -34,8 +34,6 @@ export default function QueryClientsLayout({
       if (pathname.includes("/login")) return;
       redirect("/login");
     }
-
-    console.log({ a: !isLoading && !data, data });
   }, [data, isLoading]);
 
   // ✅ Luôn gọi useEffect, chỉ set user khi user có dữ liệu

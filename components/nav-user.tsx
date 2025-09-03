@@ -48,8 +48,6 @@ export default function NavUser(props: INavUserProps) {
     window?.location.reload();
   };
 
-  console.log({ data });
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

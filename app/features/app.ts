@@ -7,10 +7,11 @@ export const genShortUrl = (data: IShortenedUrl) => {
 };
 
 export const handleLoginWithGoogle = async () => {
+  console.log({ uri: `${window.location.origin}/` });
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${window?.location?.href}`,
+      redirectTo: `${window.location.origin}/`, // quan trọng
     },
   });
 

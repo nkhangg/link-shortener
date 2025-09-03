@@ -1,5 +1,5 @@
-export const genShortUrl = (data: ShortenedUrl) => {
-    const url = window.location.href;
+export const genShortUrl = (data: IShortenedUrl) => {
+  const url = window.location.href;
 
-    return `${url}short/${data.id}`;
+  return `${url}short/${data.id}`;
 };
